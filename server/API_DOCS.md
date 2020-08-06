@@ -2,7 +2,7 @@
 
 The Critter API is a REST API for a Twitter clone. It offers a limited subset of the kinds of things you can do on Twitter.
 
-There is no user authentication. Instead, a hardcoded user is always logged in, `treasurymog`. You cannot log out, or switch users.
+There is no user authentication. Instead, a hardcoded user is always logged in, `treasurymog`. You cannot log out, or switch users. (see ./server/routes/routes.helpers.js)
 
 Some aspects of this API design are a little strange, and this is by design; often, APIs are a bit quirky, and learning how to use documentation to work with those quirks is a valuable skill :)
 
