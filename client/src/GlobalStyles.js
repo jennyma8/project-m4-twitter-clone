@@ -43,10 +43,16 @@ export default createGlobalStyle`
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
+  img {
+      height: 50px;
+      width: 50px;
+  }
   ul, li {
     list-style: none;
     padding: 10px;
+    font-weight: bold;
   }
+
   li:hover {
       display: inline-block;
       background: lightgrey;
@@ -68,9 +74,10 @@ export default createGlobalStyle`
   a {
     color: black;
     text-decoration: none;
+    margin-left: 15px;
   }
   a:hover {
-      color: purple;
+      color: blueviolet;
       
   }
 `;

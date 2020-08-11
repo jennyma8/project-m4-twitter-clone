@@ -20,13 +20,11 @@ ReactDOM.render(
     <GlobalStyles />
     <Router>
       <div>
+        <img src={Logo} />
         <ul>
           <li>
-            <img src={Logo} />
-          </li>
-
-          <li>
             <FiHome />
+
             <Link to="/">Home</Link>
           </li>
           <li>
