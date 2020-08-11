@@ -14,6 +14,19 @@ import { FiBookmark } from "react-icons/fi";
 import { FiUser } from "react-icons/fi";
 import Logo from "../src/assets/logo.svg";
 import GlobalStyles from "./GlobalStyles";
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import { COLORS } from "./constants";
+
+const NavigationLink = styled(NavLink)`
+  color: black;
+  text-decoration: none;
+  margin-left: 15px;
+
+  &:hover {
+    color: ${COLORS.primary};
+  }
+`;
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,31 +34,33 @@ ReactDOM.render(
     <Router>
       <div>
         <img src={Logo} />
+
         <ul>
           <li>
             <FiHome />
 
-            <Link to="/">Home</Link>
+            <NavigationLink to="/">Home</NavigationLink>
           </li>
           <li>
             <FiUser />
-            <Link to="/:profileId">Profile</Link>
+            <NavigationLink to="/profile/abc">Profile</NavigationLink>
           </li>
           <li>
             <RiNotification2Line />
-            <Link to="/notifications">Notifications</Link>
+            <NavigationLink to="/notifications">Notifications</NavigationLink>
           </li>
           <li>
             <FiBookmark />
-            <Link to="/bookmarks">Bookmarks</Link>
+            <NavigationLink to="/bookmarks">Bookmarks</NavigationLink>
           </li>
         </ul>
+
         <Switch>
           <Route exact path="/" component={HomeFeed} />
           <Route path="/notifications" component={Notifications} />
           <Route path="/bookmarks" component={Bookmarks} />
           <Route path="/tweet/:tweetId" component={TweetDetails} />
-          <Route path="/:profileId" component={Profile} />
+          <Route path="/profile/abc" component={Profile} />
         </Switch>
       </div>
     </Router>
