@@ -14,12 +14,11 @@ ReactDOM.render(
     <Router>
       <div>
         <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="/Bookmarks" component={Bookmarks} />
-          <Route path="/HomeFeed" component={HomeFeed} />
-          <Route path="/Notifications" component={Notifications} />
-          <Route path="/Profile" component={Profile} />
-          <Route path="/TweetDetails" component={TweetDetails} />
+          <Route exact path="/" component={HomeFeed} />
+          <Route path="/notifications" component={Notifications} />
+          <Route path="/bookmarks" component={Bookmarks} />
+          <Route path="/tweet/:tweetId" component={TweetDetails} />
+          <Route path="/:profileId" component={Profile} />
         </Switch>
       </div>
     </Router>
