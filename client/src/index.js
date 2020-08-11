@@ -13,6 +13,23 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/:profileId">Profile</Link>
+          </li>
+          <li>
+            <Link to="/notifications">Notifications</Link>
+          </li>
+          <li>
+            <Link to="/bookmarks">Bookmarks</Link>
+          </li>
+          <li>
+            <button>Meow</button>
+          </li>
+        </ul>
         <Switch>
           <Route exact path="/" component={HomeFeed} />
           <Route path="/notifications" component={Notifications} />
