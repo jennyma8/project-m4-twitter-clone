@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
 import Bookmarks from "./Bookmarks";
@@ -10,12 +11,16 @@ import TweetDetails from "./TweetDetails";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <Bookmarks />
-    <HomeFeed />
-    <Notifications />
-    <Profile />
-    <TweetDetails />
+    <Router>
+      <div>
+        <Route path="/" component={App} />
+        <Route path="/Bookmarks" component={Bookmarks} />
+        <Route path="/HomeFeed" component={HomeFeed} />
+        <Route path="/Notifications" component={Notifications} />
+        <Route path="/Profile" component={Profile} />
+        <Route path="/TweetDetails" component={TweetDetails} />
+      </div>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
