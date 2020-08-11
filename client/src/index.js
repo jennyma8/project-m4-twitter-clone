@@ -8,26 +8,38 @@ import HomeFeed from "./HomeFeed";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
 import TweetDetails from "./TweetDetails";
+import { FiHome } from "react-icons/fi";
+import { RiNotification2Line } from "react-icons/ri";
+import { FiBookmark } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
+import Logo from "../src/assets/logo.svg";
+import GlobalStyles from "./GlobalStyles";
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyles />
     <Router>
       <div>
         <ul>
           <li>
+            <img src={Logo} />
+          </li>
+
+          <li>
+            <FiHome />
             <Link to="/">Home</Link>
           </li>
           <li>
+            <FiUser />
             <Link to="/:profileId">Profile</Link>
           </li>
           <li>
+            <RiNotification2Line />
             <Link to="/notifications">Notifications</Link>
           </li>
           <li>
+            <FiBookmark />
             <Link to="/bookmarks">Bookmarks</Link>
-          </li>
-          <li>
-            <button>Meow</button>
           </li>
         </ul>
         <Switch>
