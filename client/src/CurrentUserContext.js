@@ -16,8 +16,11 @@ export const CurrentUserProvider = ({ children }) => {
         setCurrentUser(data);
         setStatus("idle");
       });
+
+    fetch("/api/me/home-feed")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }, []);
-  console.log(currentUser);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, status }}>
