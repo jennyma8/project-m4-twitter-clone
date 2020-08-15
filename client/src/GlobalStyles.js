@@ -76,8 +76,5 @@ export default createGlobalStyle`
     text-decoration: none;
     margin-left: 15px;
   }
-  /* a:hover {
-      color: blueviolet;
-      
-  } */
+
 `;
