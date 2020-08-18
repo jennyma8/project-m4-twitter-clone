@@ -1,13 +1,14 @@
 import React from "react";
-import { CurrentUserContext } from "./CurrentUserContext";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
+import { CurrentUserContext } from "./CurrentUserContext";
 import Bookmarks from "./Bookmarks";
 import HomeFeed from "./HomeFeed";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
 import TweetDetails from "./TweetDetails";
+
 import { RiNotification2Line } from "react-icons/ri";
 import { FiBookmark, FiUser, FiHome } from "react-icons/fi";
 import Logo from "../src/assets/logo.svg";
@@ -27,6 +28,8 @@ const NavigationLink = styled(NavLink)`
 `;
 
 function App() {
+  const { currentUser, status } = React.useContext(CurrentUserContext);
+
   return (
     <React.StrictMode>
       <GlobalStyles />
@@ -55,7 +58,9 @@ function App() {
           </ul>
 
           <Switch>
-            <Route exact path="/" component={HomeFeed} />
+            <Route exact path="/">
+              <HomeFeed />
+            </Route>
             <Route path="/notifications" component={Notifications} />
             <Route path="/bookmarks" component={Bookmarks} />
             <Route path="/tweet/:tweetId" component={TweetDetails} />

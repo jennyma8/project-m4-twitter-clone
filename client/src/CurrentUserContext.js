@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export const CurrentUserContext = React.createContext(null);
 
-export const CurrentUserProvider = ({ children }) => {
+const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState(null);
   const [status, setStatus] = React.useState("loading");
 
@@ -16,10 +16,6 @@ export const CurrentUserProvider = ({ children }) => {
         setCurrentUser(data);
         setStatus("idle");
       });
-
-    fetch("/api/me/home-feed")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
   }, []);
 
   return (
@@ -28,3 +24,5 @@ export const CurrentUserProvider = ({ children }) => {
     </CurrentUserContext.Provider>
   );
 };
+
+export default CurrentUserProvider;
