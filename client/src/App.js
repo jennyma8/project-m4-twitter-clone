@@ -37,7 +37,9 @@ function App() {
                 </li>
                 <li>
                   <FiUser />
-                  <NavigationLink to="/profile/abc">Profile</NavigationLink>
+                  <NavigationLink to="/profile/:profileId">
+                    Profile
+                  </NavigationLink>
                 </li>
                 <li>
                   <RiNotification2Line />
@@ -61,7 +63,7 @@ function App() {
             <Route path="/notifications" component={Notifications} />
             <Route path="/bookmarks" component={Bookmarks} />
             <Route path="/tweet/:tweetId" component={TweetDetails} />
-            <Route path="/profile/abc" component={Profile} />
+            <Route path="/profile/:profileId" component={Profile} />
           </Switch>
         </Wrapper>
       </Router>

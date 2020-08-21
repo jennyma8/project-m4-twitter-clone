@@ -17,6 +17,7 @@ const CurrentUserProvider = ({ children }) => {
         setStatus("idle");
       });
   }, []);
+  console.log(currentUser);
 
   return (
     <CurrentUserContext.Provider value={{ currentUser, status }}>

@@ -13,9 +13,10 @@ const HomeFeed = () => {
   return feed.tweetIds.map((tweetId) => {
     //console.log(feed.tweetsById[tweetId], tweetId, feed.tweetsById);
     const tweet = feed.tweetsById[tweetId];
-    console.log(tweet);
+    // console.log(tweet);
     return (
       <Wrapper>
+        <div>retweet icon + author remeowed</div>
         <Avatar src={tweet.author.avatarSrc} />
         <div>{tweet.author.displayName}</div>
         <div>@{tweet.author.handle}</div>
