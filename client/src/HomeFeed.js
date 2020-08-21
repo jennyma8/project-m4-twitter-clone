@@ -34,7 +34,9 @@ const HomeFeed = () => {
 
 const Wrapper = styled.div`
   padding: 5px;
-  margin-left: 150px;
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Avatar = styled.img`

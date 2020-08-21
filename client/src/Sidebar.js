@@ -6,6 +6,11 @@ import GlobalStyles from "./GlobalStyles";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { COLORS } from "./constants";
+import Notifications from "./Notifications";
+import Profile from "./Profile";
+import TweetDetails from "./TweetDetails";
+import Bookmarks from "./Bookmarks";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -32,6 +37,13 @@ const Sidebar = () => {
             <NavigationLink to="/bookmarks">Bookmarks</NavigationLink>
           </li>
         </ul>
+        <Switch>
+          <Route exact path="/"></Route>
+          <Route path="/notifications" component={Notifications} />
+          <Route path="/bookmarks" component={Bookmarks} />
+          <Route path="/tweet/:tweetId" component={TweetDetails} />
+          <Route path="/profile/:profileId" component={Profile} />
+        </Switch>
       </div>
     </Wrapper>
   );
@@ -41,7 +53,7 @@ const NavigationLink = styled(NavLink)`
   color: black;
   text-decoration: none;
   margin-left: 15px;
-  display: inline-block;
+
   &:hover {
     color: ${COLORS.primary};
   }

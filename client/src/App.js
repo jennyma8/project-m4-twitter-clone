@@ -23,24 +23,18 @@ function App() {
       <Router>
         <Wrapper>
           <Sidebar />
-
-          <Switch>
-            <Route exact path="/">
-              <div>Home</div>
-              <HomeFeed />
-            </Route>
-            <Route path="/notifications" component={Notifications} />
-            <Route path="/bookmarks" component={Bookmarks} />
-            <Route path="/tweet/:tweetId" component={TweetDetails} />
-            <Route path="/profile/:profileId" component={Profile} />
-          </Switch>
+          <Home>Home</Home>
+          <HomeFeed />
         </Wrapper>
       </Router>
     </React.StrictMode>
   );
 }
 
-const Wrapper = styled.div`
-  margin: 0px;
+const Wrapper = styled.div``;
+
+const Home = styled.div`
+  margin-top: -200px;
+  margin-left: 200px;
 `;
 export default App;
