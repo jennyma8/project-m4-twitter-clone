@@ -26,7 +26,7 @@ const HomeFeed = () => {
         <div>comment icon</div>
         <div>retweet icon</div>
         <div>like icon</div>
-        <div>download icon</div>
+        <div>share icon</div>
       </Wrapper>
     );
   });

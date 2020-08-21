@@ -28,8 +28,3 @@ const Wrapper = styled.div`
   margin: 2px;
 `;
 export default Profile;
-
-// ("/api/:handle/following");
-// ("/api/:handle/followers");
-// ("/api/:handle/follow");
-// ("/api/:handle/unfollow");
