@@ -27,9 +27,11 @@ const HomeFeed = () => {
         return (
           <Wrapper>
             <Retweet>
-              <FiRepeat />
               {tweet.retweetFrom ? (
-                <div>{tweet.retweetFrom.displayName} Remeowed</div>
+                <div>
+                  <FiRepeat />
+                  {tweet.retweetFrom.displayName} Remeowed
+                </div>
               ) : null}
             </Retweet>
             <Tweet>
