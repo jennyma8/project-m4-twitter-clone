@@ -2,6 +2,8 @@ import React from "react";
 import { HomeFeedContext } from "./HomeFeedContext";
 import SmallTweet from "./SmallTweet";
 import styled from "styled-components";
+import { FiRepeat } from "react-icons/fi";
+import TweetActions from "./TweetActions";
 
 const HomeFeed = () => {
   // const { currentUser } = React.useContext(CurrentUserContext);
@@ -16,24 +18,22 @@ const HomeFeed = () => {
     // console.log(tweet);
     return (
       <Wrapper>
-        <div>retweet icon + author remeowed</div>
+        <FiRepeat />
+        author remeowed
         <Avatar src={tweet.author.avatarSrc} />
         <div>{tweet.author.displayName}</div>
         <div>@{tweet.author.handle}</div>
         <div>{tweet.timestamp}</div>
         <div>{tweet.status}</div>
         {tweet.media[0] ? <img src={tweet.media[0].url}></img> : null}
-        <div>comment icon</div>
-        <div>retweet icon</div>
-        <div>like icon</div>
-        <div>share icon</div>
+        <TweetActions />
       </Wrapper>
     );
   });
 };
 
 const Wrapper = styled.div`
-  padding: 5px;
+  padding: 15px;
   margin-left: 200px;
   display: flex;
   flex-direction: column;
