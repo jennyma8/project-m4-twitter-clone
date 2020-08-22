@@ -23,5 +23,3 @@ const HomeFeedProvider = ({ children }) => {
 };
 
 export default HomeFeedProvider;
-
-// '/api/:handle/feed'
