@@ -5,21 +5,39 @@ import { useParams } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 
 const Profile = ({ children }) => {
+  const { profileId } = useParams();
+  const [user, setUser] = useState(null);
+  const [userStatus, setUserStatus] = useState(null);
+
   const { currentUser } = React.useContext(CurrentUserContext);
-  if (currentUser === null) {
+
+  useEffect(() => {
+    fetch(`/api/${profileId}/profile`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(user);
+        setUser(data);
+        setUserStatus("idle");
+      });
+    // fetch the user from the profile id
+    // get the data and set it in user state
+  }, []);
+  console.log(user);
+  if (user === null) {
     return "loading";
   }
+
   return (
     <Wrapper>
-      <img src={currentUser.profile.bannerSrc}></img>
-      <img src={currentUser.profile.avatarSrc}></img>
+      <img src={user.profile.bannerSrc}></img>
+      <img src={user.profile.avatarSrc}></img>
       <button>Following</button>
-      <div>{currentUser.profile.displayName}</div>
-      <div>{currentUser.profile.handle}</div>
-      <div>Joined {currentUser.profile.joined}</div>
-      <div>{currentUser.profile.location}</div>
-      <div>{currentUser.profile.numFollowing} Following</div>
-      <div>{currentUser.profile.numFollowers} Followers</div>
+      <div>{user.profile.displayName}</div>
+      <div>{user.profile.handle}</div>
+      <div>Joined {user.profile.joined}</div>
+      <div>{user.profile.location}</div>
+      <div>{user.profile.numFollowing} Following</div>
+      <div>{user.profile.numFollowers} Followers</div>
     </Wrapper>
   );
 };

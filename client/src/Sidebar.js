@@ -11,9 +11,11 @@ import Profile from "./Profile";
 import TweetDetails from "./TweetDetails";
 import Bookmarks from "./Bookmarks";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const Sidebar = () => {
-  return (
+  const { currentUser } = React.useContext(CurrentUserContext);
+  return currentUser ? (
     <Wrapper>
       <div>
         <img src={Logo} />
@@ -26,7 +28,9 @@ const Sidebar = () => {
           </li>
           <li>
             <FiUser />
-            <NavigationLink to="/profile/:profileId">Profile</NavigationLink>
+            <NavigationLink to={`/profile/${currentUser.profile.handle}`}>
+              Profile
+            </NavigationLink>
           </li>
           <li>
             <RiNotification2Line />
@@ -37,15 +41,10 @@ const Sidebar = () => {
             <NavigationLink to="/bookmarks">Bookmarks</NavigationLink>
           </li>
         </ul>
-        <Switch>
-          <Route exact path="/"></Route>
-          <Route path="/notifications" component={Notifications} />
-          <Route path="/bookmarks" component={Bookmarks} />
-          <Route path="/tweet/:tweetId" component={TweetDetails} />
-          <Route path="/profile/:profileId" component={Profile} />
-        </Switch>
       </div>
     </Wrapper>
+  ) : (
+    <>loading</>
   );
 };
 

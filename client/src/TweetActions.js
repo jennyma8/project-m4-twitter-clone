@@ -8,12 +8,17 @@ const TweetActions = () => {
     <Wrapper>
       <FiMessageCircle />
       <FiRepeat />
-      <FiHeart /># likes
+      <FiHeart />
       <FiUpload />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-right: 75px;
+  margin-top: 10px;
+`;
 
 export default TweetActions;

@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
 import Bookmarks from "./Bookmarks";
 import HomeFeed from "./HomeFeed";
+import { HomeFeedContext } from "./HomeFeedContext";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
 import TweetDetails from "./TweetDetails";
@@ -16,20 +17,30 @@ import { COLORS } from "./constants";
 
 function App() {
   const { currentUser, status } = React.useContext(CurrentUserContext);
+  // const {feed} = React.useContext{HomeFeedContext};
 
   return (
     <React.StrictMode>
       <GlobalStyles />
       <Router>
-        <Wrapper>
-          <Sidebar />
-          <Home>
-            Home
-            <input placeholder="What's happening" maxlength="280"></input>
-            <button>Meow</button>
-          </Home>
-          <HomeFeed />
-        </Wrapper>
+        <Sidebar />
+        <Switch>
+          <Route exact path="/">
+            <HomeFeed />
+          </Route>
+          <Route path="/notifications">
+            <Notifications />
+          </Route>
+          <Route path="/bookmarks">
+            <Bookmarks />
+          </Route>
+          <Route path="/tweet/:tweetId">
+            <TweetDetails />
+          </Route>
+          <Route path="/profile/:profileId">
+            <Profile />
+          </Route>
+        </Switch>
       </Router>
     </React.StrictMode>
   );
@@ -37,8 +48,4 @@ function App() {
 
 const Wrapper = styled.div``;
 
-const Home = styled.div`
-  margin-top: -200px;
-  margin-left: 200px;
-`;
 export default App;
