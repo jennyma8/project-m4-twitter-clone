@@ -23,7 +23,11 @@ function App() {
       <Router>
         <Wrapper>
           <Sidebar />
-          <Home>Home</Home>
+          <Home>
+            Home
+            <input placeholder="What's happening" maxlength="280"></input>
+            <button>Meow</button>
+          </Home>
           <HomeFeed />
         </Wrapper>
       </Router>

@@ -15,11 +15,11 @@ const HomeFeed = () => {
   return feed.tweetIds.map((tweetId) => {
     //console.log(feed.tweetsById[tweetId], tweetId, feed.tweetsById);
     const tweet = feed.tweetsById[tweetId];
-    // console.log(tweet);
+    console.log(tweet);
     return (
       <Wrapper>
         <FiRepeat />
-        author remeowed
+        {tweet.retweetFrom ? <div>{tweet.retweetFrom.displayName}</div> : null}
         <Avatar src={tweet.author.avatarSrc} />
         <div>{tweet.author.displayName}</div>
         <div>@{tweet.author.handle}</div>
