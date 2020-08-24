@@ -6,59 +6,57 @@ import { CurrentUserContext } from "./CurrentUserContext";
 
 import BigTweet from "./BigTweet";
 
-const Profile = ({ children }) => {
+const Profile = () => {
   const { profileId } = useParams();
-  const [user, setUser] = useState(null);
-  const [userStatus, setUserStatus] = useState(null);
-  const [feed, setFeed] = React.useState(null);
-  const { currentUser } = React.useContext(CurrentUserContext);
+  const [profile, setProfile] = useState(null);
+  const [tweets, setTweets] = useState([]);
 
   //fetch profile
   useEffect(() => {
     fetch(`/api/${profileId}/profile`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(user);
-        setUser(data);
-        setUserStatus("idle");
+        setProfile(data);
       });
-  }, []);
+  }, [profileId]);
 
   useEffect(() => {
     fetch(`/api/${profileId}/feed`)
       .then((response) => response.json())
       .then((data) => {
         const tweetsdata = Object.values(data.tweetsById);
-        setFeed(tweetsdata);
+        setTweets(tweetsdata);
       });
-  }, []);
+  }, [profileId]);
 
   //fetch tweets that matches with :profile
-  console.log(user);
-  if (user === null) {
+
+  if (profile === null) {
     return "loading";
   }
 
   return (
     <Wrapper>
-      <Banner src={user.profile.bannerSrc} />
+      <Banner src={profile.profile.bannerSrc} />
       <div>
-        <Avatar src={user.profile.avatarSrc} />
+        <Avatar src={profile.profile.avatarSrc} />
       </div>
       <button>Following</button>
-      <div>{user.profile.displayName}</div>
-      <div>{user.profile.handle}</div>
-      <div>Joined {user.profile.joined}</div>
-      <div>{user.profile.location}</div>
-      <div>{user.profile.numFollowing} Following</div>
-      <div>{user.profile.numFollowers} Followers</div>
+      <div>{profile.profile.displayName}</div>
+      <div>{profile.profile.handle}</div>
+      <div>Joined {profile.profile.joined}</div>
+      <div>{profile.profile.location}</div>
+      <div>{profile.profile.numFollowing} Following</div>
+      <div>{profile.profile.numFollowers} Followers</div>
       <ActionBar>
         <div>Tweets</div>
         <div>Media</div>
         <div>Likes</div>
       </ActionBar>
 
-      <BigTweet />
+      {tweets.map((tweet) => (
+        <BigTweet tweet={tweet} />
+      ))}
     </Wrapper>
   );
 };
