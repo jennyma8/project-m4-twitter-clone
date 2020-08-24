@@ -5,7 +5,7 @@ import { FiRepeat } from "react-icons/fi";
 import TweetActions from "./TweetActions";
 import { BsDot } from "react-icons/bs";
 import { useHistory, Link, useParams } from "react-router-dom";
-// import { format } from "date-fns"; need to install date-fns
+import { format } from "date-fns"; need to install date-fns
 
 const BigTweet = ({ tweetData }) => {
   const { feed, feedStatus } = React.useContext(HomeFeedContext);
