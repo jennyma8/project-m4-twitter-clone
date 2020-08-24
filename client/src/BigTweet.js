@@ -5,51 +5,44 @@ import { FiRepeat } from "react-icons/fi";
 import TweetActions from "./TweetActions";
 import { BsDot } from "react-icons/bs";
 import { useHistory, Link, useParams } from "react-router-dom";
-import { format } from "date-fns"; need to install date-fns
+import { format } from "date-fns";
 
-const BigTweet = ({ tweetData }) => {
-  const { feed, feedStatus } = React.useContext(HomeFeedContext);
+const BigTweet = ({ tweet }) => {
+  let history = useHistory();
   function handleClick(ev) {
     ev.preventDefault();
+    history.push(`/profile/${tweet.author.handle}`);
   }
 
-  if (feed === null) {
-    return "loading";
-  }
-  return feed.tweetIds.map((tweetId) => {
-    //console.log(feed.tweetsById[tweetId], tweetId, feed.tweetsById);
-    const tweet = feed.tweetsById[tweetId];
-    console.log(tweet);
-    return (
-      <MyLink to={`/tweet/${tweet.id}`}>
-        <Wrapper>
-          <Retweet>
-            {tweet.retweetFrom ? (
-              <div>
-                <FiRepeat />
-                {tweet.retweetFrom.displayName} Remeowed
-              </div>
-            ) : null}
-          </Retweet>
-          <Tweet>
-            <Avatar src={tweet.author.avatarSrc} onClick={handleClick} />
-            <TweetContent onClick={handleClick}>
-              <div>
-                {tweet.author.displayName} @{tweet.author.handle}
-                <BsDot />
-                {tweet.timestamp}
-              </div>
-              <div>{tweet.status}</div>
+  return tweet ? (
+    <MyLink to={`/tweet/${tweet.id}`}>
+      <Wrapper>
+        <Retweet>
+          {tweet.retweetFrom ? (
+            <div>
+              <FiRepeat />
+              {tweet.retweetFrom.displayName} Remeowed
+            </div>
+          ) : null}
+        </Retweet>
+        <Avatar src={tweet.author.avatarSrc} onClick={handleClick} />
 
-              {tweet.media[0] ? <TweetImg src={tweet.media[0].url} /> : null}
+        <Author2 onClick={handleClick}>
+          <strong>{tweet.author.displayName} </strong>
+        </Author2>
+        <Author onClick={handleClick}> @{tweet.author.handle} </Author>
+        <Author>{format(new Date(tweet.timestamp), "MM/dd/yyyy")}</Author>
 
-              <TweetActions />
-            </TweetContent>
-          </Tweet>
-        </Wrapper>
-      </MyLink>
-    );
-  });
+        <Author> {tweet.status} </Author>
+        {tweet.media[0] ? <MediaPic src={tweet.media[0].url} /> : null}
+        <TweetActions id={tweet.id} liked={tweet.isLiked}>
+          Tweet bar actions icons
+        </TweetActions>
+      </Wrapper>
+    </MyLink>
+  ) : (
+    <div>loading</div>
+  );
 };
 
 const Wrapper = styled.div`
@@ -79,13 +72,17 @@ const TweetContent = styled.div`
   margin-left: 20px;
 `;
 
-const TweetImg = styled.img`
+const MyLink = styled(Link)``;
+
+const Author2 = styled.div``;
+
+const Author = styled.div``;
+
+const MediaPic = styled.img`
   border-radius: 20px;
   height: 300px;
   width: 500px;
 `;
-
-const MyLink = styled(Link)``;
 export default BigTweet;
 
 //to be used in Tweet Details Page/single tweet

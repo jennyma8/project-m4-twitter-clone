@@ -64,9 +64,21 @@ const Home = styled.div`
 
 const HomeInput = styled.input`
   border: 0;
+  width: 600px;
+  height: 100px;
 `;
 
-const MeowButton = styled.button``;
+const MeowButton = styled.button`
+  text-decoration: none;
+  background: blue;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  width: 75px;
+  height: 30px;
+  font-size: 15px;
+  margin-left: 600px;
+`;
 
 const Wrapper = styled.div`
   margin-left: 200px;
