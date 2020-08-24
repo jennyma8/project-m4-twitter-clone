@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState, Component } from "react";
 import { HomeFeedContext } from "./HomeFeedContext";
 import styled from "styled-components";
 import { FiRepeat } from "react-icons/fi";
 import TweetActions from "./TweetActions";
 import { BsDot } from "react-icons/bs";
+import { useHistory, Link, useParams } from "react-router-dom";
+// import { format } from "date-fns"; need to install date-fns
 
-const BigTweet = () => {
+const BigTweet = ({ tweetData }) => {
   const { feed, feedStatus } = React.useContext(HomeFeedContext);
+  function handleClick(ev) {
+    ev.preventDefault();
+  }
 
   if (feed === null) {
     return "loading";
@@ -16,31 +21,33 @@ const BigTweet = () => {
     const tweet = feed.tweetsById[tweetId];
     console.log(tweet);
     return (
-      <Wrapper>
-        <Retweet>
-          {tweet.retweetFrom ? (
-            <div>
-              <FiRepeat />
-              {tweet.retweetFrom.displayName} Remeowed
-            </div>
-          ) : null}
-        </Retweet>
-        <Tweet>
-          <Avatar src={tweet.author.avatarSrc} />
-          <TweetContent>
-            <div>
-              {tweet.author.displayName} @{tweet.author.handle}
-              <BsDot />
-              {tweet.timestamp}
-            </div>
-            <div>{tweet.status}</div>
+      <MyLink to={`/tweet/${tweet.id}`}>
+        <Wrapper>
+          <Retweet>
+            {tweet.retweetFrom ? (
+              <div>
+                <FiRepeat />
+                {tweet.retweetFrom.displayName} Remeowed
+              </div>
+            ) : null}
+          </Retweet>
+          <Tweet>
+            <Avatar src={tweet.author.avatarSrc} onClick={handleClick} />
+            <TweetContent onClick={handleClick}>
+              <div>
+                {tweet.author.displayName} @{tweet.author.handle}
+                <BsDot />
+                {tweet.timestamp}
+              </div>
+              <div>{tweet.status}</div>
 
-            {tweet.media[0] ? <TweetImg src={tweet.media[0].url} /> : null}
+              {tweet.media[0] ? <TweetImg src={tweet.media[0].url} /> : null}
 
-            <TweetActions />
-          </TweetContent>
-        </Tweet>
-      </Wrapper>
+              <TweetActions />
+            </TweetContent>
+          </Tweet>
+        </Wrapper>
+      </MyLink>
     );
   });
 };
@@ -78,6 +85,7 @@ const TweetImg = styled.img`
   width: 500px;
 `;
 
+const MyLink = styled(Link)``;
 export default BigTweet;
 
 //to be used in Tweet Details Page/single tweet

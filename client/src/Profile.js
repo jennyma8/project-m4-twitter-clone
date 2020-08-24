@@ -10,10 +10,10 @@ const Profile = ({ children }) => {
   const { profileId } = useParams();
   const [user, setUser] = useState(null);
   const [userStatus, setUserStatus] = useState(null);
-  const { feed } = React.useContext(HomeFeedContext);
+  const [feed, setFeed] = React.useState(null);
   const { currentUser } = React.useContext(CurrentUserContext);
 
-  console.log(feed);
+  //fetch profile
   useEffect(() => {
     fetch(`/api/${profileId}/profile`)
       .then((response) => response.json())
@@ -22,9 +22,18 @@ const Profile = ({ children }) => {
         setUser(data);
         setUserStatus("idle");
       });
-    // fetch the user from the profile id
-    // get the data and set it in user state
   }, []);
+
+  useEffect(() => {
+    fetch(`/api/${profileId}/feed`)
+      .then((response) => response.json())
+      .then((data) => {
+        const tweetsdata = Object.values(data.tweetsById);
+        setFeed(tweetsdata);
+      });
+  }, []);
+
+  //fetch tweets that matches with :profile
   console.log(user);
   if (user === null) {
     return "loading";

@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const TweetDetails = () => {
   const { tweetId } = useParams();
-  const [tweet, setTweet] = useState(null);
+  const [tweetData, setTweetData] = useState(null);
   const [tweetStatus, setTweetStatus] = useState(null);
 
   console.log(tweetId);
@@ -14,7 +14,8 @@ const TweetDetails = () => {
     fetch(`/api/tweet/${tweetId}`)
       .then((response) => response.json())
       .then((data) => {
-        setTweet(data);
+        const tweetInfo = data.tweet;
+        setTweetData(tweetInfo);
         setTweetStatus("idle");
       });
   }, [tweetId]);
@@ -25,7 +26,7 @@ const TweetDetails = () => {
 
   return (
     <Wrapper>
-      <BigTweet tweet={tweet} />
+      <BigTweet tweetData={tweetData}></BigTweet>
     </Wrapper>
   );
 };
