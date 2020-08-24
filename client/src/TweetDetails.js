@@ -30,6 +30,8 @@ const TweetDetails = () => {
 
 const Wrapper = styled.div`
   padding: 5px;
+  margin-left: 200px;
+  margin-top: -170px;
 `;
 
 export default TweetDetails;

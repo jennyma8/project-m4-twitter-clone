@@ -25,16 +25,23 @@ const BigTweet = ({ tweet }) => {
             </div>
           ) : null}
         </Retweet>
-        <Avatar src={tweet.author.avatarSrc} onClick={handleClick} />
+        <Tweet>
+          <Avatar src={tweet.author.avatarSrc} onClick={handleClick} />
 
-        <Author2 onClick={handleClick}>
-          <strong>{tweet.author.displayName} </strong>
-        </Author2>
-        <Author onClick={handleClick}> @{tweet.author.handle} </Author>
-        <Author>{format(new Date(tweet.timestamp), "MM/dd/yyyy")}</Author>
+          <Author onClick={handleClick}>
+            <strong>{tweet.author.displayName} </strong>@{tweet.author.handle}
+          </Author>
+          <BsDot />
+          {format(new Date(tweet.timestamp), "MM/dd/yyyy")}
+        </Tweet>
+        <TweetContent>
+          {" "}
+          <div>{tweet.status}</div>
+          <div>
+            {tweet.media[0] ? <MediaPic src={tweet.media[0].url} /> : null}{" "}
+          </div>
+        </TweetContent>
 
-        <Author> {tweet.status} </Author>
-        {tweet.media[0] ? <MediaPic src={tweet.media[0].url} /> : null}
         <TweetActions id={tweet.id} liked={tweet.isLiked}>
           Tweet bar actions icons
         </TweetActions>
@@ -69,12 +76,10 @@ const Tweet = styled.div`
 `;
 
 const TweetContent = styled.div`
-  margin-left: 20px;
+  margin-left: 50px;
 `;
 
 const MyLink = styled(Link)``;
-
-const Author2 = styled.div``;
 
 const Author = styled.div``;
 
@@ -82,6 +87,7 @@ const MediaPic = styled.img`
   border-radius: 20px;
   height: 300px;
   width: 500px;
+  margin-top: 5px;
 `;
 export default BigTweet;
 
