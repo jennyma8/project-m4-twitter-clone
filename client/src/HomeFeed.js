@@ -1,13 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import { HomeFeedContext } from "./HomeFeedContext";
+
 import BigTweet from "./BigTweet";
 import styled from "styled-components";
-import CurrentUserContext from "./CurrentUserContext";
 
 const HomeFeed = () => {
-  // const { currentUser, setCurrentUser, status, setStatus } = React.useContext(
-  //   CurrentUserContext
-  // );
   const [feed, setFeed] = React.useState(null);
   const [feedStatus, feedSetStatus] = React.useState("loading");
 
@@ -23,7 +19,7 @@ const HomeFeed = () => {
       });
   }, []);
 
-  const errorMessage = "you have reached character limit of 280 characters";
+  const errorMessage = "limit of 280 characters";
   const MAXCHAR = 280;
   const maxCharacters = (characters) => {
     if (characters > MAXCHAR) {
@@ -85,14 +81,16 @@ const HomeFeed = () => {
                 value={currentTweet}
                 onChange={handleOnChange}
               ></HomeInput>
-              <div>Remaining Characters: {MAXCHAR - currentTweet.length}</div>
-              <MeowButton
-                onClick={handleSubmitTweet}
-                type="submit"
-                disabled={currentTweet.length > 0 ? false : true}
-              >
-                MEOW
-              </MeowButton>
+              <Characters>
+                {MAXCHAR - currentTweet.length}
+                <MeowButton
+                  onClick={handleSubmitTweet}
+                  type="submit"
+                  disabled={currentTweet.length > 0 ? false : true}
+                >
+                  MEOW
+                </MeowButton>
+              </Characters>
             </form>
           </Home>
 
@@ -105,7 +103,6 @@ const HomeFeed = () => {
 };
 const Home = styled.div`
   margin-top: -200px;
-
   width: 700px;
   height: 200px;
   border-left: 1px solid lightgrey;
@@ -115,7 +112,7 @@ const Home = styled.div`
 
 const HomeInput = styled.input`
   border: 0;
-  width: 600px;
+  width: 690px;
   height: 100px;
 `;
 
@@ -128,11 +125,15 @@ const MeowButton = styled.button`
   width: 75px;
   height: 30px;
   font-size: 15px;
-  margin-left: 600px;
+  margin-left: 5px;
 `;
 
 const Wrapper = styled.div`
   margin-left: 200px;
+`;
+
+const Characters = styled.div`
+  margin-left: 550px;
 `;
 
 export default HomeFeed;

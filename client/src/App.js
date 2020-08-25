@@ -1,11 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { CurrentUserContext } from "./CurrentUserContext";
 import Bookmarks from "./Bookmarks";
 import HomeFeed from "./HomeFeed";
-import { HomeFeedContext } from "./HomeFeedContext";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
 import TweetDetails from "./TweetDetails";
@@ -17,7 +15,6 @@ import { COLORS } from "./constants";
 
 function App() {
   const { currentUser, status } = React.useContext(CurrentUserContext);
-  // const {feed} = React.useContext{HomeFeedContext};
 
   return (
     <React.StrictMode>

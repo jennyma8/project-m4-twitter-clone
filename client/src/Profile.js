@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { HomeFeedContext } from "./HomeFeedContext";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { CurrentUserContext } from "./CurrentUserContext";
-
 import BigTweet from "./BigTweet";
+import { format } from "date-fns";
+import { AiOutlineCalendar } from "react-icons/ai";
+import { GrLocation } from "react-icons/gr";
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -41,11 +41,19 @@ const Profile = () => {
       <div>
         <Avatar src={profile.profile.avatarSrc} />
       </div>
-      <button>Following</button>
-      <div>{profile.profile.displayName}</div>
-      <div>{profile.profile.handle}</div>
-      <div>Joined {profile.profile.joined}</div>
-      <div>{profile.profile.location}</div>
+      <Following>Following</Following>
+      <div>
+        <strong>{profile.profile.displayName}</strong>
+      </div>
+      <div>@ {profile.profile.handle}</div>
+      <div>
+        <AiOutlineCalendar /> Joined{" "}
+        {format(new Date(profile.profile.joined), "LLLL y")}
+      </div>
+      <div>
+        <GrLocation />
+        {profile.profile.location}
+      </div>
       <div>{profile.profile.numFollowing} Following</div>
       <div>{profile.profile.numFollowers} Followers</div>
       <ActionBar>
@@ -64,6 +72,8 @@ const Profile = () => {
 const Wrapper = styled.div`
   margin-left: 200px;
   margin-top: -200px;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
 `;
 
 const Banner = styled.img`
@@ -82,7 +92,20 @@ const Avatar = styled.img`
 
 const ActionBar = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-right: 500px;
+  width: 700px;
+`;
+
+const Following = styled.button`
+  text-decoration: none;
+  border: 0;
+  background: blue;
+  color: white;
+  border-radius: 20px;
+  margin-left: 600px;
+  font-size: 20px;
+  width: 110px;
+  height: 40px;
 `;
 export default Profile;
