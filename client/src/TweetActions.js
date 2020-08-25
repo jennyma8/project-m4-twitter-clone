@@ -16,7 +16,9 @@ const TweetActions = ({ id, liked }) => {
     })
       .then((res) => res.json())
       .then(() => setIsLiked(!isLiked))
-      .catch(console.error);
+      .catch((error) => {
+        console.log("error!");
+      });
   };
   return (
     <Wrapper>

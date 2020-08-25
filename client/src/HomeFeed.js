@@ -49,7 +49,9 @@ const HomeFeed = () => {
         window.location.reload();
       })
 
-      .catch(console.error);
+      .catch((error) => {
+        console.log("error!");
+      });
   };
 
   const tweetDisplay =

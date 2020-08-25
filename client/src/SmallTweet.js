@@ -6,7 +6,7 @@ import TweetActions from "./TweetActions";
 import { BsDot } from "react-icons/bs";
 
 const SmallTweet = () => {
-  const { feed, feedStatus } = React.useContext(HomeFeedContext);
+  const { feed } = React.useContext(HomeFeedContext);
 
   if (feed === null) {
     return "loading";

@@ -12,6 +12,9 @@ const HomeFeedProvider = ({ children }) => {
       .then((data) => {
         setFeed(data);
         feedSetStatus("idle");
+      })
+      .catch((error) => {
+        console.log("error!");
       });
   }, []);
   console.log(feed);

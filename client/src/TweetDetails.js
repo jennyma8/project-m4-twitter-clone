@@ -14,6 +14,9 @@ const TweetDetails = () => {
       .then((data) => {
         setTweet(data.tweet);
         setTweetStatus("idle");
+      })
+      .catch((error) => {
+        console.log("error!");
       });
   }, [tweetId]);
 

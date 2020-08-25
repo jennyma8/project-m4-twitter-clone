@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 export const CurrentUserContext = React.createContext(null);
 
@@ -15,6 +15,9 @@ const CurrentUserProvider = ({ children }) => {
       .then((data) => {
         setCurrentUser(data);
         setStatus("idle");
+      })
+      .catch((error) => {
+        console.log("error!");
       });
   }, []);
   console.log(currentUser);

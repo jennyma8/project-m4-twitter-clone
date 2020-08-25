@@ -26,6 +26,9 @@ const Profile = () => {
       .then((data) => {
         const tweetsdata = Object.values(data.tweetsById);
         setTweets(tweetsdata);
+      })
+      .catch((error) => {
+        console.log("error!");
       });
   }, [profileId]);
 

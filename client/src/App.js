@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import { CurrentUserContext } from "./CurrentUserContext";
 import Bookmarks from "./Bookmarks";
 import HomeFeed from "./HomeFeed";
 import Notifications from "./Notifications";
@@ -14,8 +13,6 @@ import styled from "styled-components";
 import { COLORS } from "./constants";
 
 function App() {
-  const { currentUser, status } = React.useContext(CurrentUserContext);
-
   return (
     <React.StrictMode>
       <GlobalStyles />
